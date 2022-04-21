@@ -1,6 +1,6 @@
 <template>
     <div id ="nav">     
-            <h1 id ="titulo">Interface Vue com CRUD</h1>
+            <h2 id ="titulo">Interface Vue com CRUD</h2>
     </div>
 </template>
 <script>

@@ -1,6 +1,6 @@
 <template>
- <div id="new-employee">
-    <h3>Edit Employee</h3>
+ <div id="form-base">
+    <h3>Editar</h3>
     <div class="row">
     <form @submit.prevent="updateEmployee">
       <div class ="input-container">
@@ -21,8 +21,10 @@
                   </div>
                     
                     <div class ="input-container">
-                        <input type="submit" class="submit-btn" value="Editar">
-                            
+                       
+                        <button @click="deleteEmployee" class="btn-floating btn-large red"><i class="fa fa-trash-o"></i></button>
+                        <button class="btn-floating btn-large green"><i class="fa fa-pencil"></i></button>
+                        
                     </div>
     </form>
   </div>
@@ -42,6 +44,17 @@
       }
     },
     methods: {
+      deleteEmployee () {
+        
+          db.collection('employees').where('id', '==', this.id).get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              console.log(doc.ref)
+              doc.ref.delete();
+              this.$router.push('/')
+            })
+          })
+        
+      },
       updateEmployee () {
        
         db.collection('employees').where('id', '==', this.id).get().then((querySnapshot) => {
