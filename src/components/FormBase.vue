@@ -1,28 +1,27 @@
 <template>
-    <div>
+    <div id="form-base" >
         <div>
-            <form id="form-base">
+            <form  @submit.prevent="saveEmployee">
                 <div class ="input-container">
                     <label for="nome">Nome: </label>
-                    <input type="text" id="nome" name="nome" v-model="nome" placeholder="Digite seu nome">
+                    <input type="text" v-model="nome" placeholder="Digite seu nome">
+                </div>
+                <div class ="input-container">
+                    <label for="id">Id: </label>
+                    <input type="text" v-model="id" placeholder="Digite seu ID">
                 </div>
                 <div class ="input-container">
                     <label for="idade">Idade: </label>
-                    <input type="text" id="idade" name="idade" v-model="idade" placeholder="Digite sua idade">
+                    <input type="text" v-model="idade" placeholder="Digite sua idade">
                 </div>
                 <div class ="input-container">
                     <label for="regiao">Região: </label>
-                    <select name="regiao" id="regiao" v-model="regiao">
-                        <option value="">Selecione a região</option>
-                        <option value="Recife">Recife</option>
-                        <option value="Paulista">Paulista</option>
-                        <option value="Boa Viagem">Boa Viagem</option>
-                        <option value="Cabo">Cabo</option>
-                    </select>
-                   </div>
+                    <input type="text" v-model="regiao" placeholder="Digite sua região">
+                </div>
+                   
                    <div class ="input-container">
-                       <input type="submit" class="submit-btn" >
-                       <router-link to="/" class="btn grey">Cancel</router-link>
+                       <input type="submit" class="submit-btn"  value="Adicionar">
+                          
                    </div>
             </form>
         </div> 
@@ -33,24 +32,26 @@
 import db from './firebaseInit'
 
 export default {
-    name:"FormBase",
+    name: 'form-base',
     data(){
         return{
             nome: null,
             idade: null,
             regiao: null,
+            id: null
         }
     },
     methods: {
         saveEmployee () {
           db.collection('employees').add({
+            id: this.id,
             nome: this.nome,
             idade: this.idade,
             regiao: this.regiao
           })
           .then(docRef => {
             console.log('Client added: ', docRef.id)
-            this.$router.push('/')
+            
           })
           .catch(error => {
             console.error('Error adding employee: ', error)
@@ -58,7 +59,14 @@ export default {
         }
       }
 }
-console.log(db)
+
+// db.collection('messages').get().then(r =>{
+//     r.docs.map(doc => {
+//         console.log(doc.data());
+//     });
+// });
+//console.log(db)
+
 </script>
 
 <style scoped>

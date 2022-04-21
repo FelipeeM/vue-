@@ -2,17 +2,29 @@
   <Navbar />
   <FormBase />
   <Footer />
+  <ViewUser />
+  <Footer />
+  <EditUser />
+  <Footer />
+ 
+ 
 </template>
 <script>
 import Navbar from './components/Navbar.vue';
 import Footer from './components/Footer.vue';
 import FormBase from './components/FormBase.vue';
+import ViewUser from './components/ViewUser.vue';
+import Home from './components/Home.vue';
+import EditUser from './components/EditUser.vue';
 
 export default {
   components:{
     Navbar,
     FormBase,
+    ViewUser,
+    EditUser,
     Footer
+  
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
     <footer id="footer">
-        <p> preencha o formulario</p>
+        <p> </p>
     </footer> 
 </template>
 
