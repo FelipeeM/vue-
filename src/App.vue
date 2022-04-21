@@ -14,7 +14,6 @@ import Navbar from './components/Navbar.vue';
 import Footer from './components/Footer.vue';
 import FormBase from './components/FormBase.vue';
 import ViewUser from './components/ViewUser.vue';
-import DeletUser from './components/DeletUser.vue';
 import EditUser from './components/EditUser.vue';
 
 export default {

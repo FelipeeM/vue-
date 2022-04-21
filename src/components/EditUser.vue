@@ -20,11 +20,12 @@
                       <input type="text" v-model="regiao" placeholder="Digite sua região">
                   </div>
                     
-                    <div class ="input-container">
+                    <div class ="input-container-2">
                        
-                        <button @click="deleteEmployee" class="btn-floating btn-large red"><i class="fa fa-trash-o"></i></button>
-                        <button class="btn-floating btn-large green"><i class="fa fa-pencil"></i></button>
-                        
+                        <input type="submit" class="submit-btn" value="Editar">
+                    </div>
+                    <div class ="input-container">    
+                        <input  @click="deleteEmployee" type="submit" class="submit-btn" value="Deletar">
                     </div>
     </form>
   </div>
@@ -47,11 +48,13 @@
       deleteEmployee () {
         
           db.collection('employees').where('id', '==', this.id).get().then((querySnapshot) => {
+            if(confirm ('Tem certeza que deseja apagar?')){
             querySnapshot.forEach((doc) => {
               console.log(doc.ref)
               doc.ref.delete();
               this.$router.push('/')
             })
+            }
           })
         
       },
@@ -91,6 +94,11 @@
     flex-direction: column;
     margin-bottom: 20px;
 }
+.input-container-2{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
 label {
     font-weight: bold;
     margin-bottom: 15px;
@@ -113,6 +121,7 @@ input, select {
     cursor: pointer;
     transition: .5s;
 }
+
 .submit-btn:hover{
      background-color: transparent;
      color:#222;
